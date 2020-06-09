@@ -1,0 +1,46 @@
+---
+- name: Install prerequisites.
+  apt:
+    name:
+      - libnautilus-extension-dev
+      - python-docutils
+    state: present
+
+# The installation of the libnautilus-extension-dev package
+# failed initially; see GitHub issue:
+# https://github.com/raspberrypi/Raspberry-Pi-OS-64bit/issues/5
+#
+# Solution was found on:
+# https://answers.ros.org/question/218263/how-to-resolve-dependency-issues-when-installing-multimaster-fkie-on-ubuntu-arm/?answer=256145#post-id-256145
+# 
+# sudo apt-get download libegl-dev libgles-dev
+# sudo dpkg -i --force-overwrite /var/cache/apt/archives/libgl-dev_1.3.0-7~bpo10+1_arm64.deb
+# sudo dpkg -i --force-overwrite /var/cache/apt/archives/libegl-dev_1.3.0-7~bpo10+1_arm64.deb
+# sudo apt-get install -f
+
+# See: https://linux.dropbox.com/packages/
+- name: Extract Dropbox installer.
+  unarchive:
+    src: https://linux.dropbox.com/packages/nautilus-dropbox-1.6.2.tar.bz2
+    dest: /opt
+    remote_src: true
+
+- name: Run configure on Dropbox.
+  command: >
+    ./configure --build=unknown-unknown-linux
+    chdir=/opt/nautilus-dropbox-1.6.2
+    creates=/tmp/somefiletodo
+
+- name: Make Dropbox.
+  make:
+    chdir: /opt/nautilus-dropbox-1.6.2
+
+- name: Install Dropbox.
+  make:
+    chdir: /opt/nautilus-dropbox-1.6.2
+    target: install
+  register: dropbox_make
+
+- name: Start Dropbox and install the daemon.
+  command: dropbox start -i
+  when: dropbox_make is changed

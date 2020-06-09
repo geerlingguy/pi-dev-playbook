@@ -15,13 +15,34 @@
     - import_tasks: tasks/init.yml
 
   roles:
-    - geerlingguy.security
-    - geerlingguy.firewall
-    - geerlingguy.git
-    - geerlingguy.pip
-    - geerlingguy.docker_arm
-    - input_devices
-    - vscodium
-    - github_cli
+    - role: geerlingguy.security
+      tags: ['security', 'ssh']
+
+    - role: geerlingguy.firewall
+      tags: ['security', 'firewall']
+
+    - role: geerlingguy.git
+      tags: ['git']
+
+    - role: geerlingguy.pip
+      tags: ['pip']
+
+    - role: geerlingguy.docker_arm
+      tags: ['docker']
+
+    - role: input_devices
+      tags: ['input']
+
+    - role: vscodium
+      tags: ['apps', 'vscodium']
+
+    - role: github_cli
+      tags: ['apps', 'gh']
+
+    - role: evolution
+      tags: ['apps', 'evolution']
+
+    - role: dropbox
+      tags: ['apps', 'dropbox']
 
   tasks: []
