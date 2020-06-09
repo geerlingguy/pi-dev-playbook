@@ -1,0 +1,5 @@
+---
+- name: Install gnome-sound-recorder.
+  package:
+    name: gnome-sound-recorder
+    state: present

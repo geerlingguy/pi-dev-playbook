@@ -60,4 +60,7 @@
     - role: pidgin
       tags: ['apps', 'pidgin']
 
+    - role: sound_recorder
+      tags: ['apps', 'sound_recorder']
+
   tasks: []
