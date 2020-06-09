@@ -17,7 +17,11 @@ _See also_:
 
 ## Overriding Defaults
 
-TODO.
+Not everyone's development environment and preferred software configuration is the same.
+
+You can override any of the defaults configured in `default.config.yml` by creating a `config.yml` file and setting the overrides in that file.
+
+For example, TODO.
 
 ## Included Applications / Configuration (Default)
 
