@@ -1,0 +1,4 @@
+---
+- name: needs_reboot
+  debug:
+    msg: Some settings changes that were applied require a reboot.

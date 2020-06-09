@@ -20,5 +20,8 @@
     - geerlingguy.git
     - geerlingguy.pip
     - geerlingguy.docker_arm
+    - input_devices
+    - vscodium
+    - github_cli
 
   tasks: []
