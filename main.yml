@@ -48,4 +48,10 @@
     # - role: dropbox
     #   tags: ['apps', 'dropbox']
 
+    - role: cawbird
+      tags: ['apps', 'cawbird']
+
+    - role: mirage
+      tags: ['apps', 'mirage']
+
   tasks: []

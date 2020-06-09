@@ -1,0 +1,13 @@
+---
+- name: Ensure snapd is installed.
+  apt:
+    name: snapd
+    state: present
+  register: snapd_install
+  notify: cawbird_reboot_required
+
+- name: Ensure cawbird is installed (via snap).
+  snap:
+    name: cawbird
+    state: present
+  when: snapd_install is not changed

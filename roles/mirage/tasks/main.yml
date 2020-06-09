@@ -1,0 +1,5 @@
+---
+- name: Install mirage image editor.
+  apt:
+    name: mirage
+    state: present
