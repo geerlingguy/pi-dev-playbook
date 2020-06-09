@@ -1,0 +1,5 @@
+---
+- name: Install Pidgin.
+  apt:
+    name: pidgin
+    state: present

@@ -30,6 +30,9 @@
     - role: geerlingguy.docker_arm
       tags: ['docker']
 
+    - role: appearance
+      tags: ['appearance']
+
     - role: input_devices
       tags: ['input']
 
@@ -53,5 +56,8 @@
 
     - role: mirage
       tags: ['apps', 'mirage']
+
+    - role: pidgin
+      tags: ['apps', 'pidgin']
 
   tasks: []

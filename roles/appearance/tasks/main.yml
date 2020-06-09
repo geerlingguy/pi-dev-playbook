@@ -1,0 +1,17 @@
+---
+- name: Set the Adwaita-dark theme for GTK.
+  lineinfile:
+    path: /home/pi/.config/gtk-3.0/settings.ini
+    regexp: '^gtk-theme-name='
+    line: 'gtk-theme-name=Adwaita-dark'
+  register: gtk_theme_switch
+
+# TODO: This does nothing right now. Not sure how to change from CLI.
+- name: Reload GTK theme if switched.
+  shell: |
+    theme=$(gsettings get org.gnome.desktop.interface gtk-theme)
+    gsettings set org.gnome.desktop.interface gtk-theme ''
+    sleep 1
+    gsettings set org.gnome.desktop.interface gtk-theme $theme
+  become: false
+  when: gtk_theme_switch is changed
