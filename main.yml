@@ -42,7 +42,10 @@
     - role: evolution
       tags: ['apps', 'evolution']
 
-    - role: dropbox
-      tags: ['apps', 'dropbox']
+    - role: rclone
+      tags: ['apps', 'rclone']
+
+    # - role: dropbox
+    #   tags: ['apps', 'dropbox']
 
   tasks: []

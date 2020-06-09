@@ -1,0 +1,14 @@
+---
+- name: Install rclone.
+  apt:
+    name: rclone
+    state: present
+  notify: rclone_setup_required
+
+- name: Ensure Dropbox folder exists.
+  file:
+    path: /home/pi/Dropbox
+    state: directory
+    owner: pi
+    group: pi
+  failed_when: false
