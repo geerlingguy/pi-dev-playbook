@@ -1,0 +1,24 @@
+---
+- hosts: pi
+  become: yes
+
+  vars_files:
+    - default.config.yml
+
+  pre_tasks:
+    - name: Include config override file, if it exists.
+      include_vars: "{{ item }}"
+      with_fileglob:
+        - config.yml
+      tags: ['always']
+
+    - import_tasks: tasks/init.yml
+
+  roles:
+    - geerlingguy.security
+    - geerlingguy.firewall
+    - geerlingguy.git
+    - geerlingguy.pip
+    - geerlingguy.docker_arm
+
+  tasks: []

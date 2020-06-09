@@ -1,0 +1,30 @@
+---
+- hosts: pi
+  become: yes
+
+  vars_files:
+    - default.config.yml
+
+  tasks:
+    - name: Include config override file, if it exists.
+      include_vars: "{{ item }}"
+      with_fileglob:
+        - config.yml
+
+    - name: Completely destroy docker-compose environment.
+      command: >
+        docker-compose down -v
+        chdir={{ drupal_pi_app_directory }}
+
+    - name: Delete the contents of the host Drupal files directory.
+      shell: >
+        rm -rf {{ drupal_files_directory_host }}/*
+        warn=false
+      changed_when: true
+
+    # Can't use docker_service module until the following issue is resolved:
+    # https://github.com/ansible/ansible/issues/26937
+    - name: Rebuild the docker-compose environment.
+      command: >
+        docker-compose up -d --remove-orphans
+        chdir={{ drupal_pi_app_directory }}

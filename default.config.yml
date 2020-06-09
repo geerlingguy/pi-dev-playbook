@@ -1,0 +1,19 @@
+---
+# Security configuration.
+security_sudoers_passwordless: ['pi']
+firewall_allowed_tcp_ports:
+  - 22
+  - 80
+  - 443
+
+# Python configuration.
+pip_package: python3-pip
+pip_executable: pip3
+docker_pip_executable: '{{ pip_executable }}'
+
+# Nginx load balancing configuration (disabled by default).
+nginx_use_as_lb: false
+nginx_lb_backends:
+  - '10.0.100.62'
+  - '10.0.100.63'
+  - '10.0.100.64'

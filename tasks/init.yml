@@ -1,0 +1,29 @@
+---
+- name: Update apt cache if needed.
+  apt:
+    update_cache: true
+    cache_valid_time: 86400
+
+- name: Ensure /usr/local/bin exists.
+  file:
+    path: /usr/local/bin
+    state: directory
+    mode: 0775
+
+- name: Ensure auth.log file is present.
+  copy:
+    dest: /var/log/auth.log
+    content: ""
+    force: false
+
+- name: Ensure dependencies are installed.
+  apt:
+    name:
+      - curl
+      - openssh-server
+      - openssh-client
+      - libffi-dev
+      - libssl-dev
+      - python-backports.ssl-match-hostname
+      - cron
+    state: present
