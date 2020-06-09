@@ -1,0 +1,5 @@
+---
+- name: Install Evolution email client.
+  apt:
+    name: evolution
+    state: present

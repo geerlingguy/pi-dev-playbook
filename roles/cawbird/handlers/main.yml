@@ -1,0 +1,4 @@
+---
+- name: cawbird_reboot_required
+  debug:
+    msg: To complete installation of Cawbird, please reboot and run the playbook again.

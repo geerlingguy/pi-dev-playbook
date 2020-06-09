@@ -1,0 +1,7 @@
+---
+- name: rclone_setup_required
+  debug:
+    msg: |
+      Rclone was installed successfully. To set up Dropbox, run:
+      $ rclone config
+      $ rclone mount --daemon dropbox: /home/pi/Dropbox

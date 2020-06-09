@@ -13,7 +13,9 @@ _See also_:
   1. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
   2. Clone this repository to your local drive.
   3. Run `$ ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
-  4. Run `ansible-playbook main.yml` inside this directory.
+  4. Run `ansible-playbook main.yml -c local` inside this directory.
+
+Note: If you run the playbook from a different computer via SSH, remove the `-c local` from the command above.
 
 ## Overriding Defaults
 

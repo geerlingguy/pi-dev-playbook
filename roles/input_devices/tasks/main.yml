@@ -1,0 +1,23 @@
+---
+- name: Enable natural scrolling direction.
+  blockinfile:
+    path: /usr/share/X11/xorg.conf.d/40-libinput.conf
+    block: "{{ item }}"
+  notify: needs_reboot
+  with_items:
+    - |
+      Section "InputClass"
+          Identifier "libinput pointer catchall"
+          MatchIsPointer "on"
+          MatchDevicePath "/dev/input/event*"
+          Driver "libinput"
+          Option "NaturalScrolling" "true"
+      EndSection
+    - |
+      Section "InputClass"
+          Identifier "libinput touchpad catchall"
+          MatchIsTouchpad "on"
+          MatchDevicePath "/dev/input/event*"
+          Driver "libinput"
+          Option "NaturalScrolling" "true"
+      EndSection
